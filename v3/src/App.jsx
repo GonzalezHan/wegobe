@@ -15,6 +15,7 @@ import Phase4 from './components/phase4/Phase4';
 
 // Part 5
 import Phase5 from './components/phase5/Phase5';
+import RoadmapTest from './components/phase5/RoadmapTest';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -37,6 +38,11 @@ function App() {
     [0.10, 0.13, 0.65, 0.75, 0.90, 0.95],
     ['#cecece', '#0f172a', '#0f172a', '#cecece', '#cecece', '#ffffff']
   );
+
+  // Simple routing for test page
+  if (typeof window !== 'undefined' && window.location.hash === '#test-roadmap') {
+    return <RoadmapTest />;
+  }
 
   return (
     <motion.div 
