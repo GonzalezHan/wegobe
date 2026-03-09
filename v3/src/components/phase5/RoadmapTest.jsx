@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
-import { Flag, Rocket, ShieldCheck, Zap, FileSpreadsheet, LineChart, RefreshCw, Server, Cloud } from 'lucide-react';
+import { 
+  Flag, Rocket, ShieldCheck, Zap, 
+  FileText, FileSpreadsheet, Presentation, 
+  Server, Cloud, Settings, Activity, Database,
+  Cpu, PieChart
+} from 'lucide-react';
 
 const phases = [
   {
@@ -34,7 +39,7 @@ const phases = [
 
 const RoadmapTest = () => {
   return (
-    <section className="min-h-screen w-full flex items-center justify-center p-8 bg-[#0a0a0a] text-white">
+    <section className="min-h-screen w-full flex items-center justify-center p-8 bg-[#284283] text-white">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 items-center">
         
         {/* LEFT: 2x2 Grid */}
@@ -68,124 +73,241 @@ const RoadmapTest = () => {
           </div>
         </div>
 
-        {/* RIGHT: Automation Animation */}
-        <div className="w-full lg:w-1/2 h-[500px] flex items-center justify-center relative bg-transparent rounded-3xl overflow-hidden">
+        {/* RIGHT: Pipeline Automation Animation */}
+        <div className="w-full lg:w-1/2 h-[600px] flex items-center justify-center relative rounded-3xl overflow-hidden glass-panel bg-[#0f111a] border border-white/5 shadow-2xl">
           
-          <div className="absolute inset-0 flex items-center justify-center">
-            {/* Background elements */}
-            <div className="absolute w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl" />
-            <div className="absolute w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-3xl mix-blend-screen translate-x-10 translate-y-10" />
+          {/* Background Ambient Glows */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-[80px] top-0 left-0" />
+            <div className="absolute w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] bottom-0 right-0" />
           </div>
 
-          <div className="relative z-10 w-full max-w-md h-full flex flex-col items-center justify-center">
-            
-            {/* Top API Sources */}
-            <div className="absolute top-8 left-0 right-0 flex justify-between px-4 z-20">
-              <motion.div 
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="flex flex-col items-center gap-2"
-              >
-                <div className="w-14 h-14 bg-indigo-500/10 border border-indigo-500/30 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg">
-                  <Server className="text-indigo-400" size={28} />
-                </div>
-                <span className="text-[11px] font-bold text-indigo-300 bg-indigo-900/50 px-2 py-1 rounded-md border border-indigo-500/20">내부 ERP 연동</span>
-                
-                {/* Data Packets flowing to center */}
-                <motion.div
-                  animate={{ y: [0, 100], x: [0, 80], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  className="absolute top-16 left-12 w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"
-                />
-              </motion.div>
+          {/* SVG Pipeline Paths */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <defs>
+              <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#10b981" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="flow-gradient-3" x1="100%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="flow-gradient-out" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.2" />
+              </linearGradient>
+            </defs>
 
+            {/* Base Lines */}
+            <line x1="25%" y1="20%" x2="50%" y2="50%" stroke="url(#flow-gradient-1)" strokeWidth="6" strokeLinecap="round" />
+            <line x1="50%" y1="20%" x2="50%" y2="50%" stroke="url(#flow-gradient-2)" strokeWidth="6" strokeLinecap="round" />
+            <line x1="75%" y1="20%" x2="50%" y2="50%" stroke="url(#flow-gradient-3)" strokeWidth="6" strokeLinecap="round" />
+            <line x1="50%" y1="50%" x2="50%" y2="80%" stroke="url(#flow-gradient-out)" strokeWidth="12" strokeLinecap="round" />
+
+            {/* Animated Flow Packets (Dashed Lines) */}
+            <motion.line 
+              x1="25%" y1="20%" x2="50%" y2="50%" 
+              stroke="#60a5fa" strokeWidth="6" strokeLinecap="round"
+              strokeDasharray="10 30"
+              animate={{ strokeDashoffset: -40 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.line 
+              x1="50%" y1="20%" x2="50%" y2="50%" 
+              stroke="#34d399" strokeWidth="6" strokeLinecap="round"
+              strokeDasharray="10 30"
+              animate={{ strokeDashoffset: -40 }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.line 
+              x1="75%" y1="20%" x2="50%" y2="50%" 
+              stroke="#a78bfa" strokeWidth="6" strokeLinecap="round"
+              strokeDasharray="10 30"
+              animate={{ strokeDashoffset: -40 }}
+              transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+            />
+
+            {/* Output High-speed Flow */}
+            <motion.line 
+              x1="50%" y1="50%" x2="50%" y2="80%" 
+              stroke="#22d3ee" strokeWidth="4" strokeLinecap="round"
+              strokeDasharray="20 40"
+              animate={{ strokeDashoffset: -60 }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+            />
+          </svg>
+
+          {/* Interactive Nodes Overlay */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none">
+            
+            {/* Source 1: Workspace (Top Left) */}
+            <div className="absolute left-[25%] top-[20%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
               <motion.div 
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="flex flex-col items-center gap-2"
+                animate={{ y: [-3, 3, -3] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10"
               >
-                <div className="w-14 h-14 bg-teal-500/10 border border-teal-500/30 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg">
-                  <Cloud className="text-teal-400" size={28} />
+                {/* File Stack */}
+                <div className="absolute -top-3 -left-3 w-14 h-14 bg-yellow-500/20 border border-yellow-500/40 rounded-xl flex items-center justify-center backdrop-blur-md rotate-[-8deg]">
+                  <Presentation className="text-yellow-400 opacity-50" size={24} />
                 </div>
-                <span className="text-[11px] font-bold text-teal-300 bg-teal-900/50 px-2 py-1 rounded-md border border-teal-500/20">외부 금융 API</span>
-                
-                {/* Data Packets flowing to center */}
-                <motion.div
-                  animate={{ y: [0, 100], x: [0, -80], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  className="absolute top-16 right-12 w-3 h-3 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.8)]"
+                <div className="absolute -top-1 -left-1 w-14 h-14 bg-green-500/20 border border-green-500/40 rounded-xl flex items-center justify-center backdrop-blur-md rotate-[-4deg]">
+                  <FileSpreadsheet className="text-green-400 opacity-70" size={24} />
+                </div>
+                <div className="w-14 h-14 bg-blue-500/20 border border-blue-500/40 rounded-xl shadow-lg flex items-center justify-center backdrop-blur-md relative z-10">
+                  <FileText className="text-blue-400" size={24} />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Source 2: External API (Top Middle) */}
+            <div className="absolute left-[50%] top-[20%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+              <motion.div 
+                animate={{ y: [3, -3, 3] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl shadow-lg flex items-center justify-center backdrop-blur-md relative z-10"
+              >
+                <Cloud className="text-emerald-400" size={28} />
+                <motion.div 
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-emerald-500/20 rounded-2xl"
                 />
               </motion.div>
             </div>
 
-            {/* Middle: Input Files & Core */}
-            <div className="flex flex-row items-center justify-center gap-6 mt-16 z-10 w-full px-8">
-              {/* Input Files */}
-              <div className="flex flex-col gap-3">
-                {[0, 1].map((i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ x: [0, 5, 0], opacity: [0.7, 1, 0.7] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.4, ease: "easeInOut" }}
-                    className="w-12 h-14 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center justify-center shadow-lg backdrop-blur-sm relative"
-                  >
-                    <FileSpreadsheet className="text-green-400" size={20} />
-                    {/* Packet flowing right */}
-                    <motion.div
-                      animate={{ x: [0, 30], opacity: [0, 1, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.7 }}
-                      className="absolute top-1/2 -translate-y-1/2 -right-2 w-2 h-2 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.8)] z-0"
-                    />
-                  </motion.div>
-                ))}
-              </div>
+            {/* Source 3: Internal ERP (Top Right) */}
+            <div className="absolute left-[75%] top-[20%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+              <motion.div 
+                animate={{ y: [-2, 2, -2] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10 flex gap-1"
+              >
+                <div className="flex flex-col gap-1 items-end mt-2 opacity-60">
+                  <Database className="text-purple-400" size={18} />
+                  <Database className="text-purple-400" size={18} />
+                </div>
+                <div className="w-14 h-16 bg-purple-500/10 border border-purple-500/30 rounded-xl shadow-lg flex flex-col items-center justify-center backdrop-blur-md gap-1">
+                  <Server className="text-purple-400" size={24} />
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400/30" />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
 
-              {/* Processing core */}
-              <div className="relative mx-auto shrink-0">
+            {/* CENTRAL CORE: Automated Process */}
+            <div className="absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20">
+              <div className="relative">
+                {/* Outer Rotating Gear/Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 flex items-center justify-center -m-4"
-                >
-                  <div className="w-32 h-32 rounded-full border-2 border-dashed border-blue-500/40" />
-                </motion.div>
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 -m-6 rounded-xl border-2 border-dashed border-blue-500/30"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 -m-3 rounded-full border border-teal-500/40"
+                />
                 
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.6)] z-20 relative">
-                  <RefreshCw className="text-white" size={40} />
+                {/* Core Base */}
+                <div className="w-24 h-24 bg-gradient-to-tr from-slate-900 to-slate-800 border-2 border-slate-700/80 shadow-[0_0_50px_rgba(59,130,246,0.3)] rounded-2xl flex items-center justify-center relative overflow-hidden backdrop-blur-xl">
+                  {/* Internal Glow */}
+                  <div className="absolute inset-0 bg-blue-500/10" />
+                  
+                  {/* Central CPU/Gear */}
+                  <motion.div
+                    animate={{ rotate: 180 }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    className="relative z-10"
+                  >
+                    <Settings className="text-blue-400" size={36} strokeWidth={1.5} />
+                  </motion.div>
                 </div>
+
+                {/* Satellite Gears */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 bg-slate-800 border border-slate-700 rounded-lg p-1.5 shadow-lg"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                >
+                  <Settings className="text-emerald-400" size={16} />
+                </motion.div>
+                <motion.div 
+                  className="absolute -bottom-3 -left-3 bg-slate-800 border border-slate-700 rounded-lg p-1.5 shadow-lg"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                  <Settings className="text-purple-400" size={14} />
+                </motion.div>
+
               </div>
-              
-              <div className="w-12 opacity-0 shrink-0" /> {/* Spacer to balance flex */}
             </div>
 
             {/* Output Dashboards (Bottom) */}
-            <div className="mt-8 w-full flex justify-center z-10">
+            <div className="absolute left-[50%] top-[80%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
               <motion.div
-                animate={{ y: [5, -5, 5], boxShadow: ['0 10px 30px rgba(0,0,0,0.3)', '0 20px 40px rgba(59,130,246,0.3)', '0 10px 30px rgba(0,0,0,0.3)'] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="w-64 bg-slate-900 border border-slate-700/50 rounded-2xl p-4 shadow-2xl backdrop-blur-xl relative"
+                animate={{ 
+                  y: [5, -5, 5],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="w-56 h-auto bg-[#1a1f35] border border-blue-500/20 rounded-xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.5)] flex flex-col gap-3 relative z-10"
               >
-                 {/* Packets flowing from core to dashboard */}
-                 <motion.div
-                    animate={{ y: [-30, 0], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-                    className="absolute -top-6 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-400 rounded-full shadow-[0_0_12px_rgba(192,132,252,1)]"
-                 />
+                {/* Dashboard Header */}
+                <div className="flex justify-between items-center border-b border-indigo-500/20 pb-2">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-400/80" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-400/80" />
+                    <div className="w-2 h-2 rounded-full bg-green-400/80" />
+                  </div>
+                  <Cpu className="text-blue-400/50" size={14} />
+                </div>
 
-                <div className="flex items-center gap-3 mb-4 border-b border-slate-700/50 pb-3">
-                  <LineChart className="text-blue-400" size={22} />
-                  <div className="h-2 w-20 bg-white/10 rounded-full" />
-                </div>
-                <div className="grid grid-cols-2 gap-3 mb-3">
-                  <div className="h-16 bg-blue-500/10 rounded-lg flex items-end p-2 border border-blue-500/20">
-                    <motion.div className="w-full bg-blue-500/80 rounded-t-sm" animate={{ height: ['40%', '80%', '60%', '100%'] }} transition={{ duration: 5, repeat: Infinity }} />
+                {/* Dashboard Content */}
+                <div className="grid grid-cols-2 gap-2">
+                  {/* Card 1 */}
+                  <div className="bg-slate-800/50 rounded p-2 border border-slate-700/50 flex flex-col items-center justify-center">
+                    <Activity className="text-emerald-400 mb-1" size={16} />
+                    <div className="h-1 w-8 bg-emerald-400/30 font-bold rounded" />
+                    <motion.div 
+                       className="text-[10px] font-black text-emerald-300 mt-1"
+                       animate={{ opacity: [1, 0.5, 1] }}
+                       transition={{ duration: 2, repeat: Infinity }}
+                    >+46%</motion.div>
                   </div>
-                  <div className="h-16 bg-purple-500/10 rounded-lg flex items-end p-2 border border-purple-500/20">
-                    <motion.div className="w-full bg-purple-500/80 rounded-t-sm" animate={{ height: ['70%', '50%', '90%', '60%'] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} />
+                  {/* Card 2 */}
+                  <div className="bg-slate-800/50 rounded p-2 border border-slate-700/50 flex flex-col items-center justify-center">
+                    <PieChart className="text-purple-400 mb-1" size={16} />
+                    <div className="h-1 w-8 bg-purple-400/30 font-bold rounded" />
+                    <div className="text-[10px] font-black text-purple-300 mt-1">377</div>
                   </div>
                 </div>
-                <div className="h-2 w-full bg-white/5 rounded-full mb-2" />
-                <div className="h-2 w-2/3 bg-white/5 rounded-full" />
+
+                {/* Big Chart */}
+                <div className="w-full h-16 bg-blue-900/10 border border-blue-500/20 rounded relative overflow-hidden flex items-end">
+                  <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <motion.path 
+                      d="M0 40 L0 30 L10 25 L20 35 L30 15 L40 20 L50 10 L60 25 L70 5 L80 15 L90 5 L100 10 L100 40 Z" 
+                      fill="url(#flow-gradient-1)"
+                      opacity="0.8"
+                    />
+                    <motion.path 
+                      d="M0 30 L10 25 L20 35 L30 15 L40 20 L50 10 L60 25 L70 5 L80 15 L90 5 L100 10" 
+                      fill="none"
+                      stroke="#60a5fa"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+
               </motion.div>
             </div>
 

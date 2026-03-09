@@ -24,18 +24,17 @@ function App() {
   // 0.0 -> 0.15: Dark (Problem, Agitation)
   // 0.15 -> 0.22: Transition to Light (Solution)
   // 0.22 -> 0.65: Light (GasIntro, Phase3, Cases, Interviews)
-  // 0.65 -> 0.72: Transition to Dark (Roadmap)
-  // 0.72 -> 0.85: Dark (CallToAction)
-  // 0.85 -> 0.95: Transition to Blue (ContactUs)
+  // 0.65 -> 0.75: Transition to Navy (Roadmap)
+  // 0.75 -> 0.95: Navy (CallToAction, ContactUs)
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0.10, 0.13, 0.65, 0.75, 0.90, 0.95], 
-    ['#0a0a0a', '#ffffff', '#ffffff', '#0a0a0a', '#0a0a0a', '#284283'] 
+    [0.08, 0.09, 0.65, 0.75, 0.90, 0.95], 
+    ['#0a0a0a', '#ffffff', '#ffffff', '#284283', '#284283', '#284283'] 
   );
   
   const textColor = useTransform(
     scrollYProgress,
-    [0.10, 0.13, 0.65, 0.75, 0.90, 0.95],
+    [0.08, 0.09, 0.65, 0.75, 0.90, 0.95],
     ['#cecece', '#0f172a', '#0f172a', '#cecece', '#cecece', '#ffffff']
   );
 
