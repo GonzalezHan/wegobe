@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Flag, Rocket, ShieldCheck, Zap, FileSpreadsheet, LineChart, RefreshCw } from 'lucide-react';
+import { Flag, Rocket, ShieldCheck, Zap, FileSpreadsheet, LineChart, RefreshCw, Server, Cloud } from 'lucide-react';
 
 const phases = [
   {
@@ -41,7 +41,7 @@ const RoadmapTest = () => {
         <div className="w-full lg:w-1/2 flex flex-col space-y-8">
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold">
-              우리가 그리는 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">내일</span>
+              우리가 그리는 <span className="text-white">내일</span>
             </h2>
             <p className="opacity-70 text-lg">TF의 최종 목표는 부서 전체의 체질 개선입니다.</p>
           </div>
@@ -69,7 +69,7 @@ const RoadmapTest = () => {
         </div>
 
         {/* RIGHT: Automation Animation */}
-        <div className="w-full lg:w-1/2 h-[500px] flex items-center justify-center relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden glass-panel">
+        <div className="w-full lg:w-1/2 h-[500px] flex items-center justify-center relative bg-transparent rounded-3xl overflow-hidden">
           
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Background elements */}
@@ -77,82 +77,118 @@ const RoadmapTest = () => {
             <div className="absolute w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-3xl mix-blend-screen translate-x-10 translate-y-10" />
           </div>
 
-          <div className="relative z-10 w-full max-w-md h-full flex flex-col items-center justify-center gap-12">
+          <div className="relative z-10 w-full max-w-md h-full flex flex-col items-center justify-center">
             
-            {/* Input Files */}
-            <div className="flex gap-4">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  animate={{ 
-                    y: [0, -10, 0],
-                    opacity: [0.5, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.4,
-                    ease: "easeInOut"
-                  }}
-                  className="w-16 h-20 bg-green-900/40 border border-green-500/30 rounded-lg flex items-center justify-center shadow-lg backdrop-blur-sm"
-                >
-                  <FileSpreadsheet className="text-green-400" size={32} />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Processing core */}
-            <div className="relative">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 flex items-center justify-center"
+            {/* Top API Sources */}
+            <div className="absolute top-8 left-0 right-0 flex justify-between px-4 z-20">
+              <motion.div 
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="flex flex-col items-center gap-2"
               >
-                <div className="w-32 h-32 rounded-full border-2 border-dashed border-blue-500/50" />
+                <div className="w-14 h-14 bg-indigo-500/10 border border-indigo-500/30 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg">
+                  <Server className="text-indigo-400" size={28} />
+                </div>
+                <span className="text-[11px] font-bold text-indigo-300 bg-indigo-900/50 px-2 py-1 rounded-md border border-indigo-500/20">내부 ERP 연동</span>
+                
+                {/* Data Packets flowing to center */}
+                <motion.div
+                  animate={{ y: [0, 100], x: [0, 80], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  className="absolute top-16 left-12 w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"
+                />
               </motion.div>
-              
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)] z-10 relative">
-                <RefreshCw className="text-white" size={40} />
-              </div>
 
-              {/* Data stream dots */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 flex justify-center -z-10 pointer-events-none">
-                 <motion.div 
-                   animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                   transition={{ duration: 2, repeat: Infinity }}
-                   className="absolute inset-0 bg-blue-500/20 rounded-full"
-                 />
-              </div>
+              <motion.div 
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="flex flex-col items-center gap-2"
+              >
+                <div className="w-14 h-14 bg-teal-500/10 border border-teal-500/30 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg">
+                  <Cloud className="text-teal-400" size={28} />
+                </div>
+                <span className="text-[11px] font-bold text-teal-300 bg-teal-900/50 px-2 py-1 rounded-md border border-teal-500/20">외부 금융 API</span>
+                
+                {/* Data Packets flowing to center */}
+                <motion.div
+                  animate={{ y: [0, 100], x: [0, -80], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  className="absolute top-16 right-12 w-3 h-3 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.8)]"
+                />
+              </motion.div>
             </div>
 
-            {/* Output Dashboards */}
-            <motion.div
-              animate={{ 
-                y: [5, -5, 5],
-                boxShadow: ['0 10px 30px rgba(0,0,0,0.2)', '0 20px 40px rgba(59,130,246,0.3)', '0 10px 30px rgba(0,0,0,0.2)']
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="w-64 bg-slate-800/80 border border-slate-700 rounded-xl p-4 shadow-2xl backdrop-blur-md"
-            >
-              <div className="flex items-center gap-3 mb-4 border-b border-slate-700 pb-3">
-                <LineChart className="text-blue-400" size={24} />
-                <div className="h-2 w-24 bg-white/20 rounded-full" />
+            {/* Middle: Input Files & Core */}
+            <div className="flex flex-row items-center justify-center gap-6 mt-16 z-10 w-full px-8">
+              {/* Input Files */}
+              <div className="flex flex-col gap-3">
+                {[0, 1].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ x: [0, 5, 0], opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.4, ease: "easeInOut" }}
+                    className="w-12 h-14 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center justify-center shadow-lg backdrop-blur-sm relative"
+                  >
+                    <FileSpreadsheet className="text-green-400" size={20} />
+                    {/* Packet flowing right */}
+                    <motion.div
+                      animate={{ x: [0, 30], opacity: [0, 1, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.7 }}
+                      className="absolute top-1/2 -translate-y-1/2 -right-2 w-2 h-2 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.8)] z-0"
+                    />
+                  </motion.div>
+                ))}
               </div>
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <div className="h-16 bg-blue-500/20 rounded-lg flex items-end p-2 border border-blue-500/20">
-                  <motion.div className="w-full bg-blue-500 rounded-t-sm" animate={{ height: ['40%', '80%', '60%', '100%'] }} transition={{ duration: 5, repeat: Infinity }} />
-                </div>
-                <div className="h-16 bg-purple-500/20 rounded-lg flex items-end p-2 border border-purple-500/20">
-                  <motion.div className="w-full bg-purple-500 rounded-t-sm" animate={{ height: ['70%', '50%', '90%', '60%'] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} />
+
+              {/* Processing core */}
+              <div className="relative mx-auto shrink-0">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 flex items-center justify-center -m-4"
+                >
+                  <div className="w-32 h-32 rounded-full border-2 border-dashed border-blue-500/40" />
+                </motion.div>
+                
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.6)] z-20 relative">
+                  <RefreshCw className="text-white" size={40} />
                 </div>
               </div>
-              <div className="h-2 w-full bg-white/10 rounded-full mb-2" />
-              <div className="h-2 w-2/3 bg-white/10 rounded-full" />
-            </motion.div>
+              
+              <div className="w-12 opacity-0 shrink-0" /> {/* Spacer to balance flex */}
+            </div>
+
+            {/* Output Dashboards (Bottom) */}
+            <div className="mt-8 w-full flex justify-center z-10">
+              <motion.div
+                animate={{ y: [5, -5, 5], boxShadow: ['0 10px 30px rgba(0,0,0,0.3)', '0 20px 40px rgba(59,130,246,0.3)', '0 10px 30px rgba(0,0,0,0.3)'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="w-64 bg-slate-900 border border-slate-700/50 rounded-2xl p-4 shadow-2xl backdrop-blur-xl relative"
+              >
+                 {/* Packets flowing from core to dashboard */}
+                 <motion.div
+                    animate={{ y: [-30, 0], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
+                    className="absolute -top-6 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-400 rounded-full shadow-[0_0_12px_rgba(192,132,252,1)]"
+                 />
+
+                <div className="flex items-center gap-3 mb-4 border-b border-slate-700/50 pb-3">
+                  <LineChart className="text-blue-400" size={22} />
+                  <div className="h-2 w-20 bg-white/10 rounded-full" />
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                  <div className="h-16 bg-blue-500/10 rounded-lg flex items-end p-2 border border-blue-500/20">
+                    <motion.div className="w-full bg-blue-500/80 rounded-t-sm" animate={{ height: ['40%', '80%', '60%', '100%'] }} transition={{ duration: 5, repeat: Infinity }} />
+                  </div>
+                  <div className="h-16 bg-purple-500/10 rounded-lg flex items-end p-2 border border-purple-500/20">
+                    <motion.div className="w-full bg-purple-500/80 rounded-t-sm" animate={{ height: ['70%', '50%', '90%', '60%'] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} />
+                  </div>
+                </div>
+                <div className="h-2 w-full bg-white/5 rounded-full mb-2" />
+                <div className="h-2 w-2/3 bg-white/5 rounded-full" />
+              </motion.div>
+            </div>
+
           </div>
         </div>
 
