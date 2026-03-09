@@ -14,9 +14,15 @@ const ContactUs = () => {
           <p>재무자동화 TF가 여러분의 업무 시간에 여유를 찾아드리겠습니다.</p>
         </div>
 
-        <button className="bg-[#2CD9B3] hover:bg-[#20b896] text-slate-900 font-bold text-lg md:text-xl py-5 px-10 rounded-full shadow-xl transition-transform transform hover:scale-105">
-          자동화 아이디어 제안하기
-        </button>
+        <a 
+          href="https://kakao.agit.in/g/300103084/wall/new/template/69203" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <button className="bg-[#2CD9B3] hover:bg-[#20b896] text-slate-900 font-bold text-lg md:text-xl py-5 px-10 rounded-full shadow-xl transition-transform transform hover:scale-105">
+            자동화 아이디어 제안하기
+          </button>
+        </a>
       </div>
     </section>
   );
