@@ -1,5 +1,8 @@
 
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+
+import StartIntro from './components/intro/StartIntro';
 
 // Part 1
 import Phase1 from './components/phase1/Phase1';
@@ -18,7 +21,18 @@ import Phase5 from './components/phase5/Phase5';
 import RoadmapTest from './components/phase5/RoadmapTest';
 
 function App() {
-  const { scrollYProgress } = useScroll();
+  const mainContentRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: mainContentRef,
+    offset: ['start start', 'end end'],
+  });
+
+  const handleStart = () => {
+    mainContentRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
 
   // Background and text color transitions
   // 0.0 -> 0.15: Dark (Problem, Agitation)
@@ -45,21 +59,25 @@ function App() {
   }
 
   return (
-    <motion.div 
-      style={{ backgroundColor, color: textColor }} 
-      className="font-sans min-h-screen transition-colors duration-500"
-    >
-      <Phase1 />
-      
-      <GasIntro />
-      
-      <Phase3 />
+    <>
+      <StartIntro onStart={handleStart} />
 
-      
-      <Phase4 />
-      
-      <Phase5 />
-    </motion.div>
+      <motion.div
+        ref={mainContentRef}
+        style={{ backgroundColor, color: textColor }}
+        className="font-sans min-h-screen transition-colors duration-500"
+      >
+        <Phase1 />
+
+        <GasIntro />
+
+        <Phase3 />
+
+        <Phase4 />
+
+        <Phase5 />
+      </motion.div>
+    </>
   );
 }
 
